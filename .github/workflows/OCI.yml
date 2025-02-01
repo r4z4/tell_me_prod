@@ -15,12 +15,14 @@ jobs:
       - name: "Write Config & Key Files"
         run: |
           mkdir ~/.oci
-          echo "[DEFAULT]" >> ~/.oci/config
-          echo "user=${{secrets.OCI_USER_OCID}}" >> ~/.oci/config
-          echo "fingerprint=${{secrets.OCI_FINGERPRINT}}" >> ~/.oci/config
-          echo "region=${{secrets.OCI_REGION}}" >> ~/.oci/config
-          echo "tenancy=${{secrets.OCI_TENANCY_OCID}}" >> ~/.oci/config
-          echo "key_file=~/.oci/key.pem" >> ~/.oci/config
+          echo "provider /"oci/" {" >> ~/.oci/config
+          echo "/ttenancy_ocid=${{secrets.OCI_TENANCY_OCID}}" >> ~/.oci/config
+          echo "/tuser_ocid=${{secrets.OCI_USER_OCID}}" >> ~/.oci/config
+          echo "/tfingerprint=${{secrets.OCI_FINGERPRINT}}" >> ~/.oci/config
+          echo "/tprivate_key_path=${{secrets.OCI_KEY_FILE}}"
+          echo "/tregion=${{secrets.OCI_REGION}}" >> ~/.oci/config
+          echo "/tkey_file=~/.oci/key.pem" >> ~/.oci/config
+          echo "}" >> ~/.oci/config
           echo "${{secrets.OCI_KEY_FILE}}" >> ~/.oci/key.pem
 
       - name: "Install OCI CLI"
