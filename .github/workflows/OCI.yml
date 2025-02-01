@@ -1,6 +1,5 @@
 name: Create OCI With Terraform
-on:
-  workflow_dispatch:
+on: [push]
 
 jobs:
   OCI-IaC-Deployment:
